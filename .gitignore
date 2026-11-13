@@ -1,0 +1,16 @@
+# Large processed raster files
+data/processed/rasters/*.tif
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter checkpoint files
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+.venv/
+
+# Environment variables
+.env

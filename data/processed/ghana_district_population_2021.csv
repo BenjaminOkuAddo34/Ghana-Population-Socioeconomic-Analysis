@@ -1,0 +1,262 @@
+region,district,population
+Western,Jomoro Municipal,126576
+Western,Ellembelle,120893
+Western,Nzema East Municipal,94621
+Western,Ahanta West Municipal,153140
+Western,Effia Kwesimintsim Municipal,173975
+Western,Sekondi Takoradi Metropolitan Area (STMA),245382
+Western,Shama,117224
+Western,Wassa East,99641
+Western,Mpohor,52028
+Western,Tarkwa-Nsuaem Municipal,219109
+Western,Prestea/Huni Valley Municipal,229301
+Western,Wassa Amenfi East Municipal,179696
+Western,Wassa Amenfi Central,117999
+Western,Wassa Amenfi West Municipal,131000
+Central,Komenda Edina Eguafo Abirem Municipal,166017
+Central,Cape Cape Metropolitan Area (CCMA),189925
+Central,Abura Asebu Kwamankese,124465
+Central,Mfantsiman Municipal,168905
+Central,Ekumfi,56741
+Central,Gomoa West,129512
+Central,Effutu Municipal,108816
+Central,Gomoa Central,82592
+Central,Gomoa East,308697
+Central,Awutu Senya East Municipal,236527
+Central,Awutu Senya,161460
+Central,Agona East,98637
+Central,Agona West Municipal,136569
+Central,Asikuma Odoben Brakwa,126993
+Central,Ajumako Enyan Essiam,120586
+Central,Assin South,105995
+Central,Twifo Heman Lower Denkyira,66075
+Central,Twifo Ati Morkwa,100851
+Central,Assin Fosu Municipal,88753
+Central,Assin North,80539
+Central,Upper Denkyira East Municipal,110141
+Central,Upper Denkyira West,91025
+Greater Accra,Ga South Municipal,350121
+Greater Accra,Weija Gbawe Municipal,213674
+Greater Accra,Ga Central Municipal,332232
+Greater Accra,Ablekuma North Municipal,159208
+Greater Accra,Ablekuma West Municipal,153490
+Greater Accra,Ablekuma Central Municipal,169145
+Greater Accra,Accra Metropolitan Area (AMA),284124
+Greater Accra,Korle Klottey Municipal,68633
+Greater Accra,Ayawaso Central Municipal,94831
+Greater Accra,Ayawaso East Municipal,53004
+Greater Accra,Ayawaso North Municipal,63386
+Greater Accra,La Dade-Kotopon Municipal,140264
+Greater Accra,Ledzokuku Municipal,217304
+Greater Accra,Krowor Municipal,143012
+Greater Accra,Adentan Municipal,265971
+Greater Accra,Ayawaso West Municipal,75303
+Greater Accra,Okaikoi North Municipal,160446
+Greater Accra,Ga North Municipal,235292
+Greater Accra,Ga West Municipal,314299
+Greater Accra,Ga East Municipal,283379
+Greater Accra,La Nkwantanang Madina Municipal,220757
+Greater Accra,Kpone Katamanso Municipal,412828
+Greater Accra,Ashaiman Municipal,208060
+Greater Accra,Tema West Municipal,196224
+Greater Accra,Tema Metropolitan Area (TMA),177924
+Greater Accra,Ningo-Prampram,204673
+Greater Accra,Shai-Osudoku,105610
+Greater Accra,Ada West,76087
+Greater Accra,Ada East,76411
+Volta,South Tongu,113114
+Volta,Anloga,94895
+Volta,Keta Municipal,78862
+Volta,Ketu South Municipal,253122
+Volta,Ketu North Municipal,114993
+Volta,Akatsi North,32755
+Volta,Akatsi South Municipal,92133
+Volta,Central Tongu,83284
+Volta,North Tongu,111410
+Volta,Ho West,83172
+Volta,Adaklu,38649
+Volta,Agortime-Ziope,39553
+Volta,Ho Municipal,180142
+Volta,South Dayi,57518
+Volta,Afadzato South,73146
+Volta,North Dayi,39268
+Volta,Kpando Municipal,58552
+Volta,Hohoe Municipal,114472
+Eastern,Birim South,35654
+Eastern,Birim Central Municipal,76302
+Eastern,Achiase,56348
+Eastern,Asene Manso Akroso,77498
+Eastern,West Akim Municipal,117681
+Eastern,Upper West Akim,95855
+Eastern,Ayensuano,94594
+Eastern,Nsawam Adoagyiri Municipal,155597
+Eastern,Akwapim South Municipal,76922
+Eastern,Akwapim North Municipal,105315
+Eastern,Okere,51675
+Eastern,New Juaben South Municipal,129741
+Eastern,New Juaben North Municipal,88716
+Eastern,Suhum Municipal,126403
+Eastern,Abuakwa North Municipal,76195
+Eastern,Abuakwa South Municipal,89051
+Eastern,Denkyembuor,77029
+Eastern,Akyemansa,91038
+Eastern,Kwaebibirem Municipal,121698
+Eastern,Birim North,82669
+Eastern,Atiwa West,61219
+Eastern,Atiwa East,64647
+Eastern,Fanteakwa South,54634
+Eastern,Yilo Krobo Municipal,122398
+Eastern,Lower Manya Krobo Municipal,121849
+Eastern,Asuogyaman,101256
+Eastern,Upper Manya Krobo,70612
+Eastern,Fanteakwa North,56987
+Eastern,Kwahu South Municipal,79851
+Eastern,Kwahu West Municipal,145429
+Eastern,Kwahu East,80233
+Eastern,Kwahu Afram Plains South,74002
+Eastern,Kwahu Afram Plains North,66555
+Ashanti,Amansie South,113155
+Ashanti,Amansie Central,93052
+Ashanti,Akrofuom,49291
+Ashanti,Adansi South,85200
+Ashanti,Adansi Asokwa,71844
+Ashanti,Obuasi East,92401
+Ashanti,Obuasi Municipal,104297
+Ashanti,Adansi North,54155
+Ashanti,Bekwai Municipal,137967
+Ashanti,Amansie West,112627
+Ashanti,Atwima Kwanwoma,234846
+Ashanti,Bosomtwi,165180
+Ashanti,Bosome Freho,62259
+Ashanti,Asante Akim Central Municipal,91673
+Ashanti,Asante Akim South Municipal,123633
+Ashanti,Asante Akim North Municipal,85202
+Ashanti,Sekyere Kumawu,64396
+Ashanti,Sekyere East,74789
+Ashanti,Juaben Municipal,63929
+Ashanti,Ejisu Municipal,180723
+Ashanti,Oforikrom Municipal,213126
+Ashanti,Asokwa Municipal,125642
+Ashanti,Kumasi Metropolitan Area (KMA),443981
+Ashanti,Kwadaso Municipal,154526
+Ashanti,Suame Municipal,136290
+Ashanti,Old Tafo Municipal,114368
+Ashanti,Asokore Mampong Municipal,191402
+Ashanti,Kwabre East,296814
+Ashanti,Afigya Kwabre South,234667
+Ashanti,Atwima Nwabiagya North,155025
+Ashanti,Atwima Nwabiagya South Municipal,161893
+Ashanti,Atwima Mponua,155254
+Ashanti,Ahafo Ano South West,65770
+Ashanti,Ahafo Ano North Municipal,92742
+Ashanti,Ahafo Ano South East,63468
+Ashanti,Offinso North,83440
+Ashanti,Offinso Municipal,137272
+Ashanti,Afigya Kwabre North,73330
+Ashanti,Sekyere South,120076
+Ashanti,Mampong Municipal,116632
+Ashanti,Ejura Sekyedumase Municipal,137672
+Ashanti,Sekyere Central,73228
+Ashanti,Sekyere Afram Plains,33226
+Western North,Aowin Municipal,133257
+Western North,Sefwi Akontombra,66689
+Western North,Suaman,38268
+Western North,Bodi,65748
+Western North,Sefwi Wiawso Municipal,151220
+Western North,Bibiani Anhwiaso Bekwai Municipal,167971
+Western North,Juaboso,88814
+Western North,Bia West,115881
+Western North,Bia East,53073
+Ahafo,Asunafo South,91693
+Ahafo,Asunafo North Municipal,151258
+Ahafo,Asutifi South,67334
+Ahafo,Asutifi North,73556
+Ahafo,Tano North Municipal,93838
+Ahafo,Tano South Municipal,86989
+Bono,Dormaa West,47913
+Bono,Dormaa Central Municipal,112702
+Bono,Dormaa East,67899
+Bono,Sunyani Municipal,193595
+Bono,Sunyani West Municipal,136022
+Bono,Berekum East Municipal,106252
+Bono,Berekum West,49464
+Bono,Jaman South,109768
+Bono,Jaman North,116529
+Bono,Tain,115568
+Bono,Wenchi Municipal,124758
+Bono,Banda,28179
+Bono East,Nkoranza South Municipal,114642
+Bono East,Techiman Municipal,243335
+Bono East,Nkoranza North,56468
+Bono East,Techiman North,102529
+Bono East,Atebubu Amantin Municipal,144947
+Bono East,Sene West,70104
+Bono East,Sene East,72081
+Bono East,Pru West,69820
+Bono East,Pru East,100840
+Bono East,Kintampo South,88384
+Bono East,Kintampo North Municipal,140250
+Oti,Biakoye,71827
+Oti,Jasikan Municipal,59695
+Oti,Kadjebi,73959
+Oti,Krachi East Municipal,110435
+Oti,Krachi West Municipal,61128
+Oti,Krachi Nchumuru,79934
+Oti,Nkwanta South Municipal,135936
+Oti,Nkwanta North (Kpassa),126096
+Oti,Guan,28238
+Northern,Kpandai,126213
+Northern,Nanumba South,106374
+Northern,Nanumba North Municipal,188680
+Northern,Zabzugu,82846
+Northern,Tatale Sanguli,74805
+Northern,Saboba,95683
+Northern,Yendi Municipal,154421
+Northern,Mion,94930
+Northern,Nanton,50767
+Northern,Tamale Metropolitan Area (TMA),374744
+Northern,Sagnarigu Municipal,341711
+Northern,Tolon,118090
+Northern,Kumbungu,110586
+Northern,Savelugu Municipal,122888
+Northern,Karaga,114225
+Northern,Gushegu Municipal,153965
+Savannah,Bole,115800
+Savannah,Sawla Tuna Kalba,112664
+Savannah,North Gonja,61443
+Savannah,West Gonja,63449
+Savannah,Central Gonja,142762
+Savannah,East Gonja Municipal,117755
+Savannah,North East Gonja,39404
+North East,Mamprugu Moagduri,68746
+North East,West Mamprusi Municipal,175755
+North East,East Mamprusi Municipal,188006
+North East,Bunkpurugu Nakpanduri,82384
+North East,Yunyoo Nasuan,56879
+North East,Chereponi,87176
+Upper East,Builsa South,36575
+Upper East,Builsa North Municipal,56571
+Upper East,Kasena Nankana Municipal,99895
+Upper East,Kasena Nankana West,90735
+Upper East,Bolgatanga Municipal,142509
+Upper East,Talensi,87021
+Upper East,Bolgatanga East,38824
+Upper East,Bongo,116431
+Upper East,Nabdam,53039
+Upper East,Bawku West,144189
+Upper East,Binduri,76679
+Upper East,Bawku Municipal,119458
+Upper East,Garu,71774
+Upper East,Tempane,86993
+Upper East,Pusiga,80533
+Upper West,Wa West,96957
+Upper West,Wa East,91457
+Upper West,Wa Municipal,200672
+Upper West,Nadowli Kaleo,77057
+Upper West,Daffiama Bussie Issa,38754
+Upper West,Sissala East Municipal,80619
+Upper West,Sissala West,63828
+Upper West,Jirapa Municipal,91279
+Upper West,Lawra Municipal,58433
+Upper West,Lambussie Karni,51118
+Upper West,Nandom,51328
