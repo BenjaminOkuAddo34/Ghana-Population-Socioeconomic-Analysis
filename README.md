@@ -4,7 +4,7 @@
 **Study Area:** Ghana  
 **Level:** Beginner–Intermediate  
 **Primary Language:** Python  
-**Project Status:** In Development
+**Project Status:** In Development (Module 01 nearly complete)
 
 ---
 
@@ -19,6 +19,26 @@ Using Python and GIS technologies, the project will investigate how population i
 The analysis is organised into distinct analytical modules, beginning with population distribution and density before progressing into demographic and socioeconomic characteristics.
 
 By combining statistical analysis with geographic information, the project seeks to demonstrate how data analytics and GIS can support planning, resource allocation and evidence-based decision-making.
+
+### Module 01 Highlights
+
+| Finding | Result |
+|---|---|
+| National population (2021 Census) | 30,832,019 across 16 regions and 261 districts |
+| Population concentration | The top 3 regions (Greater Accra, Ashanti, Eastern) hold 44.83% of the population |
+| Regional density gap | Greater Accra 1,473.00 vs Savannah 18.81 people per km² (78.31×) |
+| Densest district | Ayawaso North, about 29,432 people per km² |
+| Sparsest district | Sekyere Afram Plains, about 9.71 people per km² |
+| Typical district | Median density 146.37 vs mean 1,215.36 (the mean is pulled up by dense urban districts) |
+| Largest / smallest district | Kumasi Metropolitan 443,981 / Banda 28,179 |
+| International context | Ghana (142.9 per km², World Bank 2021) ranks 3rd of 6 countries of similar surface area |
+
+### Interactive Visual Story
+
+An animated, interactive dashboard presents these findings: moving density dots for Greater Accra and Savannah, bars that re-sort when you switch between population and density, and a district explorer.
+
+- File: [`dashboard/ghana_population_density_dashboard.html`](dashboard/ghana_population_density_dashboard.html) (open it in any browser).
+- Live demo: *add the link here (for example, a GitHub Pages URL)*.
 
 ### Project Objectives
 
@@ -264,6 +284,9 @@ The project will investigate the following questions.
 | Numerical Analysis | NumPy | Mathematical and statistical operations |
 | Statistical Analysis | SciPy | Statistical tests and analysis |
 | Visualization | Matplotlib | Statistical charts and plots |
+| Map Annotation | matplotlib-scalebar | Scale bars on maps |
+| Data Retrieval | Requests | World Bank API data retrieval |
+| Interactive Visualisation | HTML, CSS and JavaScript | Animated, interactive visual story |
 | Visualization | Seaborn | Exploratory data visualization |
 | Geospatial Analysis | GeoPandas | Spatial data manipulation and analysis |
 | Raster Analysis | Rasterio | Raster processing and analysis |
@@ -284,6 +307,8 @@ The project primarily uses:
 - `shapely`
 - `pyproj`
 - `rasterio`
+- `requests`
+- `matplotlib-scalebar`
 - `openpyxl`
 - `jupyterlab`
 
@@ -301,6 +326,7 @@ The project will use publicly available demographic, socioeconomic and geospatia
 | WorldPop | Gridded population datasets |
 | Humanitarian Data Exchange (HDX) | Administrative boundaries and socioeconomic datasets |
 | OpenStreetMap | Geographic features and infrastructure where relevant |
+| World Bank (indicator EN.POP.DNST) | International population density comparison |
 
 ### Reference Links
 
@@ -310,6 +336,7 @@ The project will use publicly available demographic, socioeconomic and geospatia
 - WorldPop: https://www.worldpop.org/
 - Humanitarian Data Exchange: https://data.humdata.org/
 - OpenStreetMap: https://www.openstreetmap.org/
+- World Bank population density indicator: https://data.worldbank.org/indicator/EN.POP.DNST
 
 ### Data Management and Quality Considerations
 
@@ -458,7 +485,7 @@ The project is currently focused on **Module 01: Population Distribution and Den
 - [x] Population dataset collection.
 - [x] Population dataset inspection and cleaning.
 - [x] Identification of Ghana's 16 regions.
-- [x] Regional population analysis.
+- [x] Regional population analysis and concentration analysis.
 - [x] District and other administrative-area population analysis.
 - [x] Administrative-area population ranking.
 - [x] Population share calculations.
@@ -471,16 +498,27 @@ The project is currently focused on **Module 01: Population Distribution and Den
 - [x] District population density mapping.
 - [x] Gridded population raster inspection.
 - [x] Gridded population heat map creation.
+- [x] Clipping and reprojecting the population raster to Ghana's boundaries.
+- [x] International population density comparison using World Bank data (EN.POP.DNST, 2021).
+- [x] Presentation slides and an interactive visual story for the Module 01 findings.
 
 ### Remaining Activities
 
-- [ ] Clip the population raster to Ghana's administrative boundaries.
-- [ ] Complete raster-based spatial analysis.
-- [ ] Finalise international population density comparisons using consistent data sources.
-- [ ] Consolidate population analysis tables and charts.
-- [ ] Interpret and document the major findings.
-- [ ] Complete the population analysis report.
-- [ ] Prepare the population analysis dataset for future modules.
+- [ ] Compare the raster total with the 2021 census total and document the difference.
+- [ ] Consolidate population analysis tables and charts in `outputs/`.
+- [ ] Complete the written population analysis report (`docs/population_analysis.md`).
+- [ ] Save the final analysis datasets (district area and density, regional density) for future modules.
+- [ ] Tidy the notebooks before publishing (remove local file paths from outputs, fix warnings).
+
+### Notebooks Completed
+
+| Notebook | Focus |
+|---|---|
+| `01_population_data_inspection` | Dataset inspection, cleaning and validation |
+| `02_regional_population_analysis` | Regional ranking, shares and concentration |
+| `03_district_level_population_analysis` | District ranking and distribution |
+| `04_population_maps` | Boundary join, density, choropleth maps and raster processing |
+| `05_international_population_density_comparison` | Ghana compared with five countries of similar size |
 
 Progress will be updated as each analytical activity is completed.
 
@@ -522,6 +560,11 @@ ghana-population-socioeconomic-analysis/
 │
 ├── notebooks/
 │   ├── 01_population/
+│   │   ├── 01_data_inspection.ipynb
+│   │   ├── 02_regional_analysis.ipynb
+│   │   ├── 03_district_analysis.ipynb
+│   │   ├── 04_population_maps.ipynb
+│   │   └── 05_international_comparison.ipynb
 │   ├── 02_demographics/
 │   ├── 03_education/
 │   ├── 04_employment/
@@ -539,6 +582,7 @@ ghana-population-socioeconomic-analysis/
 │   └── reports/
 │
 ├── dashboard/
+│   ├── ghana_population_density_dashboard.html
 │   └── population_dashboard.xlsx
 │
 ├── docs/
@@ -561,7 +605,7 @@ The repository structure may evolve as additional datasets and analytical module
 
 | Module | Activity | Status |
 |---|---|---|
-| 01 | Population Distribution and Density | In Progress |
+| 01 | Population Distribution and Density | Nearly Complete |
 | 02 | Demographic Characteristics | Planned |
 | 03 | Education and Literacy | Planned |
 | 04 | Employment and Economic Characteristics | Planned |
@@ -584,6 +628,8 @@ Each module will follow the project's data collection, cleaning, analysis, visua
 - Correlation between socioeconomic variables does not automatically imply causation.
 - Geographic analysis will depend on the accuracy and resolution of available spatial datasets.
 - Some socioeconomic indicators may only be available at regional rather than district level.
+- District and regional densities use the area of the district boundary polygons, while the World Bank uses land area and its own population estimates. Ghana's national density is therefore about 129 per km² in the maps and 142.9 per km² in the international comparison.
+- The WorldPop raster total may differ from the census total because it is a modelled estimate; this difference is to be quantified and documented.
 
 ---
 

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghana’s population, packed unevenly</title>
+<style>
+:root{--bg:#f6f4ef;--panel:#ffffff;--ink:#14212b;--mute:#5b6a74;--line:#dcd8cd;--teal:#1f8a83;--gold:#c98a14;--blue:#3770ae;--dot:#14212b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a22;--panel:#16252f;--ink:#eef2f1;--mute:#9db0ba;--line:#2a3b46;--teal:#4cc0b6;--gold:#e8b24a;--blue:#6fa6dc;--dot:#eef2f1}}
+:root[data-theme="dark"]{--bg:#0f1a22;--panel:#16252f;--ink:#eef2f1;--mute:#9db0ba;--line:#2a3b46;--teal:#4cc0b6;--gold:#e8b24a;--blue:#6fa6dc;--dot:#eef2f1}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:0 20px 56px}
+h1,h2{font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;font-weight:700;line-height:1.12;letter-spacing:-.01em;margin:0}
+h1{font-size:clamp(2.1rem,5.6vw,3.6rem)}
+h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:8px}
+p{margin:0 0 12px;max-width:62ch}
+.mute{color:var(--mute)}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;padding:56px 0 44px}
+.hero p.lead{font-size:1.15rem;margin-top:18px}
+.dots{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+canvas{display:block;width:100%;height:auto;aspect-ratio:2/1}
+.cap{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:.88rem;margin-top:8px}
+.cap b{display:block;font-size:1.05rem}
+section{padding:40px 0;border-top:1px solid var(--line)}
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 18px}
+button{font:inherit;font-size:.95rem;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.chart{position:relative;margin-top:6px}
+.row{position:absolute;left:0;right:0;display:grid;grid-template-columns:minmax(110px,32%) 1fr 84px;align-items:center;gap:10px;transition:transform .8s cubic-bezier(.3,.7,.2,1),opacity .4s}
+.nm{font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk{display:inline-block;width:1.7em;color:var(--mute);font-variant-numeric:tabular-nums}
+.tr{height:16px;background:color-mix(in srgb,var(--line) 55%,transparent);border-radius:4px;overflow:hidden}
+.bar{display:block;height:100%;width:0;border-radius:4px;transition:width .9s cubic-bezier(.3,.7,.2,1)}
+.v{text-align:right;font-variant-numeric:tabular-nums;font-size:.92rem;font-weight:600}
+.note{margin-top:14px;padding:12px 14px;border-left:4px solid var(--gold);background:var(--panel);border-radius:0 8px 8px 0;min-height:3.2em}
+.foot{font-size:.9rem;color:var(--mute);border-top:1px solid var(--line);padding-top:22px}
+a{color:var(--blue)}
+@media (max-width:760px){.hero{grid-template-columns:1fr;padding-top:36px}.row{grid-template-columns:minmax(96px,38%) 1fr 70px}}
+@media (prefers-reduced-motion:reduce){.row,.bar{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<div class="hero">
+  <div>
+    <h1>Ghana has 30.8 million people, and they are packed very unevenly.</h1>
+    <p class="lead">Greater Accra holds about 1,473 people on every square kilometre. Savannah holds about 19. That is a 78× gap inside one country.</p>
+    <p class="mute">This page walks through my analysis of the 2021 census across 16 regions and 261 districts, built with Python and GIS.</p>
+  </div>
+  <div class="dots" role="img" aria-label="Two one-square-kilometre boxes. Greater Accra has about 147 moving dots, Savannah about 2. Each dot stands for 10 people.">
+    <canvas id="cv" width="800" height="400"></canvas>
+    <div class="cap"><div><b>Greater Accra</b>about 1,473 people per km²</div><div><b>Savannah</b>about 19 people per km²</div></div>
+    <p class="mute" style="font-size:.82rem;margin:8px 0 0">One dot stands for 10 people on one square kilometre.</p>
+  </div>
+</div>
+
+<section id="s1">
+  <h2>Switch the measure and the ranking reshuffles</h2>
+  <p>Regions ranked by headcount look different from regions ranked by density. Press a button and watch the bars move.</p>
+  <div class="ctrl" role="group" aria-label="Measure">
+    <button aria-pressed="true" data-m="pop">Population</button>
+    <button aria-pressed="false" data-m="den">People per km²</button>
+  </div>
+  <div class="chart" id="c1"></div>
+  <div class="note" id="n1" aria-live="polite"></div>
+</section>
+
+<section id="s2">
+  <h2>The districts at the extremes</h2>
+  <p>Of 261 districts, the biggest and smallest by headcount, and the densest and sparsest by land.</p>
+  <div class="ctrl" role="group" aria-label="District list">
+    <button aria-pressed="true" data-d="most">Most populated</button>
+    <button aria-pressed="false" data-d="least">Least populated</button>
+    <button aria-pressed="false" data-d="dense">Densest</button>
+    <button aria-pressed="false" data-d="sparse">Sparsest</button>
+  </div>
+  <div class="chart" id="c2"></div>
+  <div class="note" id="n2" aria-live="polite"></div>
+</section>
+
+<section id="s3">
+  <h2>Ghana among countries of similar size</h2>
+  <p>Six countries with surface areas within about 3% of Ghana’s. Ghana ranks third for density.</p>
+  <div class="chart" id="c3"></div>
+  <div class="note">The five other countries average 135 people per km², so Ghana sits only about 5.5% above them. The spread between the UK and Laos is almost nine-fold.</div>
+</section>
+
+<div class="foot">
+  <p>Data: Ghana Statistical Service 2021 Population and Housing Census, WorldPop gridded population, World Bank indicator EN.POP.DNST (2021). Tools: Python, GeoPandas, Rasterio, Matplotlib. Regional density uses district boundary areas, so Ghana’s national figure here differs from the World Bank’s land-area figure.</p>
+  <p><a href="https://github.com/BenjaminOkuAddo34/Ghana-Population-Socioeconomic-Analysis" target="_blank" rel="noopener">See the notebooks and code on GitHub</a></p>
+</div>
+</main>
+<script>
+(function(){
+var nf=function(x,d){return x.toLocaleString("en-US",{maximumFractionDigits:d||0})};
+var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* Reusable animated bar chart: rows keep identity by name so they slide when re-sorted */
+function Chart(el,rowH){
+  var rows={};el.style.height="0px";
+  return function(items,color,fmt){
+    var max=Math.max.apply(null,items.map(function(i){return i.v}));
+    el.style.height=items.length*rowH+"px";
+    var keep={};
+    items.forEach(function(it,idx){
+      keep[it.n]=1;var r=rows[it.n];
+      if(!r){
+        var d=document.createElement("div");d.className="row";d.style.height=rowH+"px";
+        d.style.transform="translateY("+(idx*rowH)+"px)";
+        d.innerHTML='<span class="nm"><span class="rk"></span><span class="t"></span></span><div class="tr"><i class="bar"></i></div><span class="v"></span>';
+        d.querySelector(".t").textContent=it.n;el.appendChild(d);
+        r=rows[it.n]={d:d,rk:d.querySelector(".rk"),b:d.querySelector(".bar"),v:d.querySelector(".v")};
+      }
+      r.d.style.opacity=1;r.d.style.transform="translateY("+(idx*rowH)+"px)";
+      r.rk.textContent=(it.rank||idx+1);
+      r.b.style.background=it.hl?"var(--gold)":color;
+      r.v.textContent=fmt(it.v);
+      var w=(it.v/max*100)+"%";
+      if(reduce){r.b.style.width=w}else{requestAnimationFrame(function(){requestAnimationFrame(function(){r.b.style.width=w})})}
+    });
+    Object.keys(rows).forEach(function(k){if(!keep[k]){var r=rows[k];delete rows[k];r.d.style.opacity=0;setTimeout(function(){r.d.remove()},450)}});
+  };
+}
+
+/* Data from notebooks 02 to 05 */
+var R=[["Greater Accra",5455692,1473.00],["Ashanti",5440463,224.18],["Eastern",2925653,150.09],["Central",2859821,296.74],["Northern",2310928,89.74],["Western",2060585,144.91],["Volta",1659040,178.31],["Upper East",1301226,150.65],["Bono",1208649,105.77],["Bono East",1203400,51.08],["Upper West",901502,47.78],["Western North",880921,87.60],["Oti",747248,66.57],["North East",658946,72.41],["Savannah",653277,18.81],["Ahafo",564668,109.91]];
+var popRank={},denRank={};
+R.slice().sort(function(a,b){return b[1]-a[1]}).forEach(function(r,i){popRank[r[0]]=i+1});
+R.slice().sort(function(a,b){return b[2]-a[2]}).forEach(function(r,i){denRank[r[0]]=i+1});
+var D={
+ most:[["Kumasi Metropolitan",443981],["Kpone Katamanso",412828],["Tamale Metropolitan",374744],["Ga South",350121],["Sagnarigu",341711],["Ga Central",332232],["Ga West",314299],["Gomoa East",308697],["Kwabre East",296814],["Accra Metropolitan",284124]],
+ least:[["Banda",28179],["Guan",28238],["Akatsi North",32755],["Sekyere Afram Plains",33226],["Birim South",35654],["Builsa South",36575],["Suaman",38268],["Adaklu",38649],["Daffiama Bussie Issa",38754],["Bolgatanga East",38824]],
+ dense:[["Ayawaso North",29432.24],["Old Tafo",20987.55],["Ablekuma Central",16753.68],["Ayawaso Central",14687.96],["Ayawaso East",14459.01],["Ablekuma North",13150.18],["Ablekuma West",12867.67],["Accra Metropolitan",12178.35],["Ashaiman",10627.09],["Suame",10623.92]],
+ sparse:[["Sekyere Afram Plains",9.71],["North East Gonja",12.42],["North Gonja",12.62],["Banda",13.22],["West Gonja",13.53],["Sissala East",15.81],["Sene East",16.76],["Bole",18.61],["Central Gonja",19.39],["Wa East",21.12]]
+};
+var DN={most:"Five of the ten most populated districts are in Greater Accra.",least:"The smallest district, Banda, has about 28,000 people, roughly one fifteenth of Kumasi Metropolitan.",dense:"Eight of the ten densest districts are in Greater Accra, and two are in Ashanti.",sparse:"Five of the ten sparsest districts are in the Savannah Region."};
+var C=[["United Kingdom",276.85],["Uganda",228.96],["Ghana",142.92],["Romania",83.11],["Guinea",55.80],["Laos",32.29]];
+
+var c1=Chart(document.getElementById("c1"),34),c2=Chart(document.getElementById("c2"),34),c3=Chart(document.getElementById("c3"),38);
+var metric="pop";
+function draw1(){
+  var i=metric==="pop"?1:2;
+  var items=R.map(function(r){return{n:r[0],v:r[i],rank:(metric==="pop"?popRank:denRank)[r[0]],hl:r[0]==="Ahafo"||r[0]==="Northern"}})
+    .sort(function(a,b){return b.v-a.v});
+  c1(items,"var(--teal)",metric==="pop"?function(v){return nf(v)}:function(v){return nf(v,1)});
+  document.getElementById("n1").textContent=metric==="pop"
+    ?"By headcount, Greater Accra and Ashanti are almost tied at the top (5.46 million and 5.44 million). Ahafo and Northern are highlighted: Ahafo is smallest here, Northern fifth."
+    :"By density, Greater Accra leads by a wide margin. Ahafo, the smallest region, rises from 16th to 8th because it is compact, while Northern falls from 5th to 10th because it is so large.";
+}
+document.querySelectorAll("#s1 button").forEach(function(b){b.addEventListener("click",function(){
+  metric=b.dataset.m;document.querySelectorAll("#s1 button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});draw1()})});
+
+var dset="most";
+function draw2(){
+  var dens=dset==="dense"||dset==="sparse";
+  var col=dset==="most"||dset==="dense"?"var(--blue)":"var(--gold)";
+  var items=D[dset].map(function(r,i){return{n:r[0],v:r[1],rank:i+1}});
+  c2(items,col,dens?function(v){return nf(v,v<100?1:0)}:function(v){return nf(v)});
+  document.getElementById("n2").textContent=DN[dset];
+}
+document.querySelectorAll("#s2 button").forEach(function(b){b.addEventListener("click",function(){
+  dset=b.dataset.d;document.querySelectorAll("#s2 button").forEach(function(x){x.setAttribute("aria-pressed",x===b)});draw2()})});
+
+/* Draw each chart the first time it scrolls into view so the bars grow on screen */
+var seen={};
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting&&!seen[e.target.id]){seen[e.target.id]=1;
+    if(e.target.id==="s1")draw1();
+    if(e.target.id==="s2")draw2();
+    if(e.target.id==="s3")c3(C.map(function(r,i){return{n:r[0],v:r[1],rank:i+1,hl:r[0]==="Ghana"}}),"var(--blue)",function(v){return nf(v,1)});
+  }})},{threshold:.2});
+["s1","s2","s3"].forEach(function(id){io.observe(document.getElementById(id))});
+
+/* Hero: one square kilometre each, one moving dot per 10 people */
+var cv=document.getElementById("cv"),g=cv.getContext("2d"),W=cv.width,H=cv.height,gap=24,S=(W-gap)/2,pad=8;
+function mk(n,ox){var a=[];for(var i=0;i<n;i++)a.push({x:ox+pad+Math.random()*(S-2*pad),y:pad+Math.random()*(H-2*pad),vx:(Math.random()-.5)*.9,vy:(Math.random()-.5)*.9});return a}
+var A=mk(147,0),B=mk(2,S+gap);
+function box(ox){g.strokeStyle=getComputedStyle(document.documentElement).getPropertyValue("--line");g.lineWidth=2;g.strokeRect(ox+1,1,S-2,H-2)}
+function frame(move){
+  g.clearRect(0,0,W,H);box(0);box(S+gap);
+  g.fillStyle=getComputedStyle(document.documentElement).getPropertyValue("--dot");
+  [[A,0],[B,S+gap]].forEach(function(p){p[0].forEach(function(d){
+    if(move){d.x+=d.vx;d.y+=d.vy;if(d.x<p[1]+pad||d.x>p[1]+S-pad)d.vx*=-1;if(d.y<pad||d.y>H-pad)d.vy*=-1}
+    g.beginPath();g.arc(d.x,d.y,5,0,6.2832);g.fill()})});
+  if(move)requestAnimationFrame(function(){frame(true)});
+}
+frame(!reduce);
+})();
+</script>
+</body>
+</html>
